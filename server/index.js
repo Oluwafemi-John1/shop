@@ -28,14 +28,15 @@ app.post('/ai', async (req, res) => {
 
     if (!prompt) {
         return res.status(400).send("Prompt is required")
-    }
-    try {
-        const result = await model.generateContent(prompt);
-        console.log('request sent');
-        res.status(200).json({ response: result.response.text() })
-    } catch (error) {
-        console.error(error)
-        res.status(500).send('An error occurred')
+    } else {
+        try {
+            const result = await model.generateContent(prompt);
+            console.log('request sent');
+            res.status(200).json({ response: result.response.text() })
+        } catch (error) {
+            console.error(error)
+            res.status(500).send('An error occurred')
+        }
     }
 })
 
