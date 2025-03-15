@@ -14,6 +14,8 @@ const Ai = () => {
         axios.post(endpoint, payload)
         .then((res)=>{
             console.log(res.data);
+            setmsg(res.data.response)
+            setprompt('')
         })
         .catch((err)=>{
             const info = err.response.data
@@ -25,7 +27,7 @@ const Ai = () => {
     return (
         <>
             <Navbar />
-            <div className="col-lg-7 col-10 mx-auto p-lg-4 p-2 shadow mt-lg-4 mt-2 rounded-2">
+            <div className="col-lg-8 col-10 mx-auto p-lg-4 p-2 shadow mt-lg-4 mt-2 rounded-2">
                 <h3 className="text-center my-3">Gen AI</h3>
                 <p className="text-center">
                     {prompt === '' ? err : ''}
@@ -33,7 +35,7 @@ const Ai = () => {
                 <input type="text" className="form-control my-2 form-control-sm shadow-none" name='prompt' value={prompt} placeholder="Enter prompt" onChange={(e)=>{setprompt(e.target.value)}} />
                 <button onClick={getResponse} className="btn btn-dark btn-sm w-100 my-2 fw-bold">Make Prompt</button>
                 <div className="my-2">
-                    {prompt === '' ? err : ''}
+                    <pre>{msg}</pre>
                 </div>
             </div>
         </>
