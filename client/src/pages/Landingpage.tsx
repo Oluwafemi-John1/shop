@@ -4,7 +4,7 @@ const Landingpage = () => {
     return (
         <>
             <Navbar />
-        </>
+        </> 
     )
 }
 
